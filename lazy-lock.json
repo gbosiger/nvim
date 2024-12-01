@@ -1,4 +1,5 @@
 {
+  "FixCursorHold.nvim": { "branch": "master", "commit": "1900f89dc17c603eec29960f57c00bd9ae696495" },
   "LuaSnip": { "branch": "master", "commit": "2592b91577136dbb355a4708be1e60619456b7f6" },
   "catppuccin": { "branch": "main", "commit": "faf15ab0201b564b6368ffa47b56feefc92ce3f4" },
   "cmake-tools.nvim": { "branch": "master", "commit": "53bc5261e1e0b0d28be465d2b2b07a6f0646e1eb" },
@@ -11,6 +12,8 @@
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
   "neo-tree-bufferline.nvim": { "branch": "main", "commit": "ab3e2e3f127d8a1ae72b50fdaf39fcc96a3c4c24" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "a77af2e764c5ed4038d27d1c463fa49cd4794e07" },
+  "neotest": { "branch": "master", "commit": "6d3d22cdad49999ef774ebe1bc250a4994038964" },
+  "neotest-rust": { "branch": "main", "commit": "eec7eaf8491e619fe99e620e2da3cd31b30e406b" },
   "none-ls.nvim": { "branch": "main", "commit": "a008d53a74ccde4a205bebc6a0be91cd84145a5a" },
   "nui.nvim": { "branch": "main", "commit": "b58e2bfda5cea347c9d58b7f11cf3012c7b3953f" },
   "nvim-bufferline.lua": { "branch": "main", "commit": "261a72b90d6db4ed8014f7bda976bcdc9dd7ce76" },

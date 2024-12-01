@@ -1,5 +1,12 @@
 return {
   "mrcjkb/rustaceanvim",
+  version = "^4",
+  lazy = false,
+  ["rust-analyzer"] = {
+    cargo = {
+      allFeatures = true,
+    },
+  },
   config = function()
     local mason_registry = require("mason-registry")
 
@@ -8,7 +15,21 @@ return {
     local codelldb_path = extension_path .. "adapter/codelldb"
     local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 
-    local cfg = require('rustaceanvim.config')
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.keymap.set("n", "<leader>a", function()
+      vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
+      -- or vim.lsp.buf.codeAction() if you don't want grouping.
+    end, { silent = true, buffer = bufnr })
+    vim.keymap.set(
+      "n",
+      "K", -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
+      function()
+        vim.cmd.RustLsp({ "hover", "actions" })
+      end,
+      { silent = true, buffer = bufnr }
+    )
+
+    local cfg = require("rustaceanvim.config")
     return {
       dap = {
         adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),

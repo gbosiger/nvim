@@ -1,10 +1,7 @@
 return {
-  {
-    "rcarriga/nvim-dap-ui",
-    config = function()
-      require("dapui").setup()
-    end,
-  },
+	{
+		"rcarriga/nvim-dap-ui",
+	},
 	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
@@ -15,8 +12,9 @@ return {
 		config = function()
 			local dap = require("dap")
 			local dapui = require("dapui")
+			dapui.setup()
 
-			dap.adapters.codelldb = {
+      dap.adapters.codelldb = {
 				type = "server",
 				host = "127.0.0.1",
 				port = 13000,
@@ -31,7 +29,25 @@ return {
 					type = "codelldb",
 					request = "launch",
 					program = function()
-						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+						-- Build the project using `cargo build` - for now excluded so I can choose between the project debug or custom test path, which I can compile with cargo test --no-run
+						--[[
+            vim.fn.jobstart("cargo build", {
+							on_exit = function()
+								vim.notify("Build completed.")
+							end,
+						})
+            --]]
+
+						-- Automatically find the executable in `target/debug`
+						local output_file = vim.fn.getcwd()
+							.. "/target/debug/"
+							.. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+
+						if vim.fn.filereadable(output_file) == 1 then
+							return output_file
+						else
+							return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+						end
 					end,
 					cwd = "${workspaceFolder}",
 					terminal = "integrated",
