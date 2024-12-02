@@ -6,6 +6,7 @@ return {
 			options = {
 				theme = "catppuccin",
 			},
+			extensions = { "neo-tree", "trouble" },
 		})
 	end,
 }

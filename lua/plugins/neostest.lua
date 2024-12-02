@@ -11,6 +11,7 @@ return {
 			"nvim-treesitter/nvim-treesitter",
      	"rouge8/neotest-rust",
 		},
+    ft = "rust",
 		config = function()
 			require("neotest").setup({
 				adapters = {
