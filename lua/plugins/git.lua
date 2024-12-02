@@ -3,14 +3,16 @@ return {
 		"lewis6991/gitsigns.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
-			require("gitsigns").setup()
+			require("gitsigns").setup({
+				current_line_blame = true,
+			})
 		end,
 	},
 	{
 		"sindrets/diffview.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
-      require("diffview").setup()
-    end,
+			require("diffview").setup()
+		end,
 	},
 }
