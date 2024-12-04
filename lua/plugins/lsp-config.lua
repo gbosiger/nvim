@@ -1,12 +1,5 @@
 return {
   {
-    "williamboman/mason.nvim",
-    lazy = false,
-    config = function()
-      require("mason").setup()
-    end,
-  },
-  {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
     config = function()
@@ -21,6 +14,7 @@ return {
     lazy = false,
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      capabilities.offsetEncoding = "utf-8" -- resolves an issue with multiple different client offset encoding
 
       local lspconfig = require("lspconfig")
       lspconfig.lua_ls.setup({
@@ -31,8 +25,18 @@ return {
         capabilities = capabilities,
       })
       --]]
+      lspconfig.cmake.setup({
+        capabilities = capabilities,
+      })
       lspconfig.clangd.setup({
         capabilities = capabilities,
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--suggest-missing-includes",
+          -- "--compile-commands-dir=/home/developer/workspace/out/host/Fsanitizethread/ara_Com",
+          "--compile-commands-dir=/home/developer/workspace/out/host/Debug/ara_Com",
+        },
       })
 
       vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
