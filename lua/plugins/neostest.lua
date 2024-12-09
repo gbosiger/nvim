@@ -1,6 +1,7 @@
 return {
 	{
 		"rouge8/neotest-rust",
+    ft = { "rust" }
 	},
 	{
 		"nvim-neotest/neotest",
@@ -11,7 +12,7 @@ return {
 			"nvim-treesitter/nvim-treesitter",
      	"rouge8/neotest-rust",
 		},
-    ft = "rust",
+    ft = { "rust" },
 		config = function()
 			require("neotest").setup({
 				adapters = {

@@ -34,8 +34,7 @@ return {
           "clangd",
           "--background-index",
           "--suggest-missing-includes",
-          -- "--compile-commands-dir=/home/developer/workspace/out/host/Fsanitizethread/ara_Com",
-          "--compile-commands-dir=/home/developer/workspace/out/host/Debug/ara_Com",
+          "--compile-commands-dir=/home/developer/workspace/out/host/Fsanitizethread/ara_Com",
         },
       })
 
