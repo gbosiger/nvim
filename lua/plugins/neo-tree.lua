@@ -19,6 +19,20 @@ return {
 					hide_gitignored = false,
 				},
 			},
+			default_component_configs = {
+				file_size = {
+					enabled = false,
+				},
+				type = {
+					enabled = false,
+				},
+				last_modified = {
+					enabled = false,
+				},
+				created = {
+					enabled = false,
+				},
+			},
 			window = {
 				mappings = {
 					["P"] = { "toggle_preview", config = { use_float = false, use_image_nvim = true } },
