@@ -5,7 +5,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         -- ensure_installed = { "lua_ls", "rust_analyzer", "clangd" },
-        ensure_installed = { "lua_ls", "clangd" }, -- removed rust_analyzer due to conflicts with rustacean
+        ensure_installed = { "lua_ls", "clangd", "cmake" }, -- removed rust_analyzer due to conflicts with rustacean
       })
     end,
   },

@@ -1,7 +1,7 @@
 return {
 	{
 		"rouge8/neotest-rust",
-    ft = { "rust" }
+		lazy = false,
 	},
 	{
 		"nvim-neotest/neotest",
@@ -10,13 +10,13 @@ return {
 			"nvim-lua/plenary.nvim",
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-treesitter/nvim-treesitter",
-     	"rouge8/neotest-rust",
+			"rouge8/neotest-rust",
 		},
-    ft = { "rust" },
+		lazy = false,
 		config = function()
 			require("neotest").setup({
 				adapters = {
-					require("neotest-rust")
+					require("neotest-rust"),
 				},
 			})
 		end,

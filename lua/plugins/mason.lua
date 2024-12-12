@@ -12,6 +12,7 @@ return {
 				"lua_ls",
 				"bacon",
 				"bacon-ls",
+				"codelldb",
       },
 		})
 
@@ -22,7 +23,6 @@ return {
 				"clang-format",
 				"clangd",
 				"cmakelint",
-				"codelldb",
 				"cpplint",
 				"isort",
 				"lua-language-server",
