@@ -1,5 +1,5 @@
 return {
-	"amirt01/cmake-tools.nvim",
+	"Civitasv/cmake-tools.nvim",
 	dependencies = { "preservim/vimux" },
 	ft = { "cpp", "cmake" },
 	config = function()
