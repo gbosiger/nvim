@@ -23,7 +23,7 @@ return {
           args = { "--port", "13000" },
         },
       }
-
+--[[
       dap.configurations.cpp = {
         {
           type = "codelldb",
@@ -82,7 +82,7 @@ return {
           sourceLanguages = { "rust" },
         },
       }
-
+--]]
       dap.listeners.before.attach.dapui_config = function()
         dapui.open()
       end
