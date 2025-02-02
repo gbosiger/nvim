@@ -5,6 +5,8 @@
 * luarocks and then "sudo luarocks --lua-version 5.3.6 install jsregexp"
 * fd-find
 * lua5.1 (at lest for now as it complained in :checkhealth that 5.3 is not ok)
+* python3-venv
+* python3-pip
 
 
 # Other issues
