@@ -14,6 +14,9 @@ opt.smartcase = true -- if you use mixied case, case-sensitive search is assumed
 opt.splitright = true
 opt.splitbelow = true
 
+opt.spell = true
+opt.spelllang = { "en_us" }
+
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window biger vertically
 vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
 vim.keymap.set("n", "+", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally by pressing shift and =
