@@ -12,7 +12,7 @@ return {
 		conform.setup({
 			formatters_by_ft = {
 				cpp = { "clang-format" },
-				cmake = { "cmake_format" },
+				cmake = { "gersemi" },
 				html = { "prettier" },
 				json = { "prettier" },
 				yaml = { "prettier" },

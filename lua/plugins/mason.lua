@@ -13,7 +13,7 @@ return {
 				"bacon",
 				"bacon-ls",
 				"codelldb",
-      },
+			},
 		})
 
 		local mason_tool_installer = require("mason-tool-installer")
@@ -26,9 +26,10 @@ return {
 				"cpplint",
 				"isort",
 				"lua-language-server",
-        "cmake-language-server",
+				"cmake-language-server",
 				"rust-analyzer",
 				"stylua",
+				"gersemi",
 			},
 		})
 	end,
