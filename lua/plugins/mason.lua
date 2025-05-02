@@ -13,6 +13,7 @@ return {
 				"bacon",
 				"bacon-ls",
 				"codelldb",
+				"neocmake",
 			},
 		})
 
@@ -26,7 +27,6 @@ return {
 				"cpplint",
 				"isort",
 				"lua-language-server",
-				"cmake-language-server",
 				"rust-analyzer",
 				"stylua",
 				"gersemi",
