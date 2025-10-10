@@ -6,9 +6,13 @@ return {
 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 		"MunifTanjim/nui.nvim",
 		"jackielii/neo-tree-bufferline.nvim",
+		"s1n7ax/nvim-window-picker",
 	},
 	config = function()
 		vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>")
+		require("window-picker").setup({
+			hint = "floating-big-letter",
+		})
 		require("neo-tree").setup({
 			filesystem = {
 				follow_current_file = { enabled = true },
