@@ -23,6 +23,41 @@ return {
 					args = { "--port", "13000" },
 				},
 			}
+
+			local function find_opendebugad7()
+				local mason = vim.fn.stdpath("data")
+					.. "/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7"
+				if vim.fn.executable(mason) == 1 then
+					return mason
+				end
+				-- VS Code fallbacks:
+				for _, p in
+					ipairs(
+						vim.fn.glob(
+							"~/.vscode/extensions/ms-vscode.cpptools-*/debugAdapters/bin/OpenDebugAD7",
+							true,
+							true
+						)
+					)
+				do
+					if vim.fn.executable(p) == 1 then
+						return p
+					end
+				end
+				return nil
+			end
+
+			local openDebug = find_opendebugad7()
+			if not openDebug then
+				vim.notify("OpenDebugAD7 not found. Install cpptools via :Mason.", vim.log.levels.ERROR)
+			else
+				dap.adapters.cppdbg = {
+					id = "cppdbg",
+					type = "executable",
+					command = openDebug,
+				}
+			end
+
 			dap.configurations.cpp = {
 				{
 					type = "codelldb",
@@ -79,6 +114,10 @@ return {
 					sourceLanguages = { "rust" },
 				},
 			}
+
+			if vim.fn.filereadable(".vscode/launch.json") then
+				require("dap.ext.vscode").load_launchjs()
+			end
 
 			dap.listeners.before.attach.dapui_config = function()
 				dapui.open()
