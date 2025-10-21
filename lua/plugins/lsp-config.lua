@@ -19,19 +19,29 @@ return {
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
-			--[[
-      lspconfig.rust_analyzer.setup({
-        capabilities = capabilities,
-      })
-      --]]
-			--[[
-			lspconfig.cmake.setup({
-				cmd = {
-					"cmake-language-server",
-				},
-				filetypes = { "cmake", "CMakeListst.txt" },
-			})
-      --]]
+			
+			-- Disable ESLint LSP server and hide virtual text in Neovim
+			-- Add this to your init.lua or init.vim file
+			local isLspDiagnosticsVisible = true
+			vim.keymap.set("n", "<leader>lx", function()
+			    isLspDiagnosticsVisible = not isLspDiagnosticsVisible
+			    vim.diagnostic.config({
+				virtual_text = isLspDiagnosticsVisible,
+				underline = isLspDiagnosticsVisible
+			    }) end)
+	           	--[[
+			      lspconfig.rust_analyzer.setup({
+				capabilities = capabilities,
+			      })
+			      --]]
+						--[[
+						lspconfig.cmake.setup({
+							cmd = {
+								"cmake-language-server",
+							},
+							filetypes = { "cmake", "CMakeListst.txt" },
+						})
+			      --]]
 			lspconfig.neocmake.setup({
 				capabilities = capabilities,
 			})
