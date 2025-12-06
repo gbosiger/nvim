@@ -7,6 +7,7 @@
 * lua5.1 (at lest for now as it complained in :checkhealth that 5.3 is not ok)
 * python3-venv
 * python3-pip
+* nodejs (version 22.x for copilot plugin)
 
 
 # Other issues

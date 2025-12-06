@@ -4,7 +4,7 @@ return {
 		lazy = false,
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "neocmake" }, -- removed rust_analyzer due to conflicts with rustacean
+				ensure_installed = { "lua_ls", "clangd", "neocmake", "bashls" }, -- removed rust_analyzer due to conflicts with rustacean
 			})
 		end,
 	},
@@ -19,29 +19,16 @@ return {
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
-			
-			-- Disable ESLint LSP server and hide virtual text in Neovim
-			-- Add this to your init.lua or init.vim file
+
 			local isLspDiagnosticsVisible = true
 			vim.keymap.set("n", "<leader>lx", function()
-			    isLspDiagnosticsVisible = not isLspDiagnosticsVisible
-			    vim.diagnostic.config({
-				virtual_text = isLspDiagnosticsVisible,
-				underline = isLspDiagnosticsVisible
-			    }) end)
-	           	--[[
-			      lspconfig.rust_analyzer.setup({
-				capabilities = capabilities,
-			      })
-			      --]]
-						--[[
-						lspconfig.cmake.setup({
-							cmd = {
-								"cmake-language-server",
-							},
-							filetypes = { "cmake", "CMakeListst.txt" },
-						})
-			      --]]
+				isLspDiagnosticsVisible = not isLspDiagnosticsVisible
+				vim.diagnostic.config({
+					virtual_text = isLspDiagnosticsVisible,
+					underline = isLspDiagnosticsVisible,
+				})
+			end)
+
 			lspconfig.neocmake.setup({
 				capabilities = capabilities,
 			})
@@ -54,6 +41,7 @@ return {
 					--"--compile-commands-dir=",
 				},
 			})
+			lspconfig.bashls.setup({})
 
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
