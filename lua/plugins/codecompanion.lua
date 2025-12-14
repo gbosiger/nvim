@@ -1,11 +1,13 @@
 return {
 	"olimorris/codecompanion.nvim",
+	version = "17.33.0",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 	},
 	opts = {
 		-- which LLM/backend to use
+		ignore_warnings = true, -- temporarily as it show a warning about braking changes and we pin the version for now
 		strategies = {
 			-- chat buffer (for “understand project”, refactors, etc.)
 			chat = {
