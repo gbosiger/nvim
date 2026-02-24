@@ -1,21 +1,10 @@
 return {
 	{
-		"williamboman/mason.nvim",
-		lazy = false,
-		config = function()
-			require("mason").setup()
-		end,
-	},
-	{
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
-		dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
 		config = function()
-			local mason_lspconfig = require("mason-lspconfig")
-			mason_lspconfig.setup({
-				ensure_installed = { "lua_ls", "clangd", "neocmake", "bashls" }, -- keep your list
-				automatic_installation = true,
-				automatic_enable = false,
+			require("mason-lspconfig").setup({
+				ensure_installed = { "lua_ls", "clangd", "neocmake", "bashls" }, -- removed rust_analyzer due to conflicts with rustacean
 			})
 		end,
 	},
@@ -23,6 +12,13 @@ return {
 		"neovim/nvim-lspconfig",
 		lazy = false,
 		config = function()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			capabilities.offsetEncoding = "utf-8" -- resolves an issue with multiple different client offset encoding
+
+			vim.lsp.config("lua_ls", {
+				capabilities = capabilities,
+			})
+
 			local isLspDiagnosticsVisible = true
 			vim.keymap.set("n", "<leader>lx", function()
 				isLspDiagnosticsVisible = not isLspDiagnosticsVisible
@@ -31,6 +27,20 @@ return {
 					underline = isLspDiagnosticsVisible,
 				})
 			end)
+
+			vim.lsp.config("neocmake", {
+				capabilities = capabilities,
+			})
+			vim.lsp.config("clangd", {
+				capabilities = capabilities,
+				cmd = {
+					"clangd",
+					"--background-index",
+					"--suggest-missing-includes",
+					--"--compile-commands-dir=",
+				},
+			})
+			vim.lsp.config("bashls", {})
 
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
