@@ -58,34 +58,6 @@ return {
 				}
 			end
 
-			dap.configurations.cpp = {
-				{
-					type = "codelldb",
-					request = "launch",
-					program = function()
-						-- Automatically find the executable in `target/debug`
-						local output_file = vim.fn.getcwd()
-							.. "/../out/host"
-							.. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-
-						if vim.fn.filereadable(output_file) == 1 then
-							return output_file
-						else
-							return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-						end
-					end,
-
-					cwd = "${workspaceFolder}/../out/host/Debug/ara_Com",
-					environment = {
-						TSAN_OPTIONS = "suppressions=${workspaceFolder}/.tsan_suppressions",
-					},
-					stopOnEntry = false,
-					args = {},
-					sourceLanguages = { "cpp" },
-					preRunCommands = "breakpoint name configure --disable cpp_throw",
-				},
-			}
-
 			dap.configurations.rust = {
 				{
 					type = "codelldb",
@@ -114,10 +86,6 @@ return {
 					sourceLanguages = { "rust" },
 				},
 			}
-
-			if vim.fn.filereadable(".vscode/launch.json") then
-				require("dap.ext.vscode").load_launchjs()
-			end
 
 			dap.listeners.before.attach.dapui_config = function()
 				dapui.open()
