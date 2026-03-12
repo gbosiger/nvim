@@ -83,7 +83,7 @@ return {
 
 			-- Your keymaps (keep simple; they’ll exist when you’re in a Rust buffer)
 			local bufnr = vim.api.nvim_get_current_buf()
-			vim.keymap.set("n", "<leader>a", function()
+			vim.keymap.set("n", "<leader>ra", function()
 				vim.cmd.RustLsp("codeAction")
 			end, { silent = true, buffer = bufnr })
 

@@ -6,14 +6,7 @@ return {
 	lazy = false,
 	config = function()
 		local mason = require("mason")
-		mason.setup({
-			-- list of lsp servers
-			ensure_installed = {
-				"lua_ls",
-				"codelldb",
-				"neocmake",
-			},
-		})
+		mason.setup({})
 
 		local mason_tool_installer = require("mason-tool-installer")
 		mason_tool_installer.setup({

@@ -42,6 +42,8 @@ return {
 			})
 			vim.lsp.config("bashls", {})
 
+			vim.lsp.enable({ "lua_ls", "neocmake", "clangd", "bashls" })
+
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
