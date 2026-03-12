@@ -18,12 +18,10 @@ return {
 			end)
 		end,
 	},
-
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^5",
+		version = "*",
 		lazy = false,
-
 		init = function()
 			-- Build desired config without indexing vim.g.rustaceanvim directly
 			local desired = {
@@ -60,7 +58,7 @@ return {
 				return
 			end
 
-			local extension_path = vim.fn.stdpath("data") .. "mason"
+			local extension_path = vim.fn.stdpath("data") .. "/mason/"
 			local codelldb_path = extension_path .. "bin/codelldb"
 			local liblldb_path = extension_path .. "opt/lldb/lib/liblldb.so"
 

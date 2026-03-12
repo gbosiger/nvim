@@ -10,8 +10,6 @@ return {
 			-- list of lsp servers
 			ensure_installed = {
 				"lua_ls",
-				"bacon",
-				"bacon-ls",
 				"codelldb",
 				"neocmake",
 			},
