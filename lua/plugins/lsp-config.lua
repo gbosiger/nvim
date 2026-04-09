@@ -15,11 +15,16 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			capabilities.offsetEncoding = "utf-8" -- resolves an issue with multiple different client offset encoding
 
+			local isLspDiagnosticsVisible = true
+			vim.diagnostic.config({
+				virtual_text = isLspDiagnosticsVisible,
+				underline = isLspDiagnosticsVisible,
+			})
+
 			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
 			})
 
-			local isLspDiagnosticsVisible = true
 			vim.keymap.set("n", "<leader>lx", function()
 				isLspDiagnosticsVisible = not isLspDiagnosticsVisible
 				vim.diagnostic.config({
