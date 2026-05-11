@@ -24,12 +24,12 @@ return {
 			local ok, ctp_lualine = pcall(require, "catppuccin.utils.lualine")
 			local lualine_theme = ok and ctp_lualine(flavour) or "auto"
 
-			require("lualine").setup({
-				options = {
-					theme = lualine_theme,
-					component_separators = { left = "", right = "" },
-					section_separators = { left = "", right = "" },
-				},
+				require("lualine").setup({
+					options = {
+						theme = lualine_theme,
+						component_separators = { left = "|", right = "|" },
+						section_separators = { left = "", right = "" },
+					},
 				extensions = { "neo-tree", "trouble" },
 			})
 			vim.cmd("redrawstatus")
