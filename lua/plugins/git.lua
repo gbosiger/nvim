@@ -1,18 +1,11 @@
 return {
-	{
-		"lewis6991/gitsigns.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("gitsigns").setup({
-				current_line_blame = true,
-			})
-		end,
-	},
-	{
-		"sindrets/diffview.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("diffview").setup()
-		end,
-	},
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = { current_line_blame = true },
+  },
+  {
+    "sindrets/diffview.nvim",
+    cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewClose" },
+    opts = {},
+  },
 }

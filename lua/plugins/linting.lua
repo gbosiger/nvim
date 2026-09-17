@@ -1,25 +1,15 @@
 return {
-	"mfussenegger/nvim-lint",
-	event = { "BufReadPre", "BufNewFile" },
-	config = function()
-		local lint = require("lint")
-
-		lint.linters_by_ft = {
-			cpp = { "clangtidy" },
-			cmake = { "cmakelint" },
-		}
-
-		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-
-		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
-			group = lint_augroup,
-			callback = function()
-				lint.try_lint()
-			end,
-		})
-
-		vim.keymap.set("n", "<leader>l", function()
-			lint.try_lint()
-		end, { desc = "Trigger linting for current file" })
-	end,
+  "mfussenegger/nvim-lint",
+  opts = {
+    linters_by_ft = {
+      lua = { "luacheck" },
+    },
+  },
+  keys = {
+    {
+      "<leader>ll",
+      function() require("lint").try_lint() end,
+      desc = "Trigger linting",
+    },
+  },
 }

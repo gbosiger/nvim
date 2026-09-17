@@ -1,24 +1,12 @@
 return {
-	{
-		"rouge8/neotest-rust",
-		lazy = false,
-	},
-	{
-		"nvim-neotest/neotest",
-		dependencies = {
-			"nvim-neotest/nvim-nio",
-			"nvim-lua/plenary.nvim",
-			"antoinemadec/FixCursorHold.nvim",
-			"nvim-treesitter/nvim-treesitter",
-			"rouge8/neotest-rust",
-		},
-		lazy = false,
-		config = function()
-			require("neotest").setup({
-				adapters = {
-					require("neotest-rust"),
-				},
-			})
-		end,
-	},
+  {
+    "nvim-neotest/neotest",
+    keys = {
+      { "<leader>tt", function() require("neotest").run.run() end, desc = "Test nearest" },
+      { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Test file" },
+      { "<leader>ta", function() require("neotest").run.run(vim.fn.getcwd()) end, desc = "Test project" },
+      { "<leader>to", function() require("neotest").output.open({ enter = true }) end, desc = "Test output" },
+      { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Test summary" },
+    },
+  },
 }

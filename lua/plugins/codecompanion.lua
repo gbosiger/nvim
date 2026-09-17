@@ -1,37 +1,28 @@
 return {
-	"olimorris/codecompanion.nvim",
-	version = "*",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-treesitter/nvim-treesitter",
-	},
-	opts = {
-		-- which LLM/backend to use
-		ignore_warnings = true, -- temporarily as it show a warning about braking changes and we pin the version for now
-		strategies = {
-			-- chat buffer (for “understand project”, refactors, etc.)
-			chat = {
-				adapter = "openai",
-				-- model = "gpt-4.1-mini", -- good default: fast + cheap
-				model = "gpt-5.1",
-			},
-			-- inline ops on visual selection
-			inline = {
-				adapter = "openai",
-				-- model = "gpt-4.1-mini",
-				model = "gpt-5.1",
-			},
-			-- agents (optional, but handy for bigger edits)
-			agent = {
-				adapter = "openai",
-				-- model = "gpt-4.1-mini",
-				model = "gpt-5.1",
-			},
-		},
-
-		-- general plugin opts
-		opts = {
-			log_level = "INFO",
-		},
-	},
+  "olimorris/codecompanion.nvim",
+  version = "*",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+  },
+  opts = {
+    adapters = {
+      ollama_chat = function()
+        return require("codecompanion.adapters").extend("ollama", {
+          schema = { model = { default = "qwen3:8b" } },
+        })
+      end,
+      ollama_code = function()
+        return require("codecompanion.adapters").extend("ollama", {
+          schema = { model = { default = "qwen2.5-coder:7b" } },
+        })
+      end,
+    },
+    strategies = {
+      chat = { adapter = "ollama_chat" },
+      inline = { adapter = "ollama_code" },
+      agent = { adapter = "ollama_code" },
+    },
+    opts = { log_level = "INFO" },
+  },
 }

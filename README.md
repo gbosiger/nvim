@@ -1,41 +1,52 @@
-# Needed Ubuntu packages:
-* cmake-format
-* ripgrep
-* rust stuff
-* luarocks and then "sudo luarocks --lua-version 5.3.6 install jsregexp"
-* fd-find
-* lua5.1 (at lest for now as it complained in :checkhealth that 5.3 is not ok)
-* python3-venv
-* python3-pip
-* nodejs (version 22.x for copilot plugin)
+# Neovim configuration
 
+This branch is the Omarchy variant of the configuration. It is based on the
+LazyVim configuration shipped by Omarchy and adds focused Rust, Lua, and Bash
+development support.
 
-# Troubleshooting
+## Ownership
 
-## Colors in tmux
-For strange colors make sure that you also see :checkhealth in host if there
-are some issues with tmux xterm settings. For now I set ~/.tmux.conf in host  
-to:
+The active checkout belongs at `~/.config/nvim`. Omarchy owns the generated
+theme specification at `lua/plugins/theme.lua`; that path is intentionally
+ignored by Git. Theme switching updates its target under
+`~/.local/state/omarchy/current/theme/`.
 
-set-option -g default-terminal "screen-256color"
+Do not edit `/usr/share/omarchy` or `/usr/share/omarchy-nvim`. Those are package
+files and may be replaced by Omarchy updates.
 
-and also set TERM env variable to same value: export TERM='screen-256color'
-and also in the container. Then colorscheme works and also response is 
-quite faster.
+## Included modules
 
-## Tree-sitter + CodeCompanion crash (Neovim 0.12 / Snap)
+- Rust LSP through rustaceanvim, rustfmt, crates.nvim, and codelldb
+- Rust tests through neotest-rust
+- Lua and Bash language servers
+- Lua formatting and linting
+- Treesitter with a Markdown injection compatibility query
+- Gitsigns with current-line blame and Diffview
+- Telescope live-grep arguments and UI select
+- Neo-tree custom visibility and preview behavior
+- Trouble diagnostics and TODO views
+- tmux pane navigation when running inside tmux
+- CodeCompanion using local Ollama models
 
-Symptom:
-- Errors like `attempt to call method 'range' (a nil value)`
-- Seen in Tree-sitter stack traces, often triggered while using `codecompanion.nvim` chat and/or `spellwarn.nvim`
+GitHub Copilot, C/C++, CMake, and generic C/C++ debugging are intentionally
+not included.
 
-Cause:
-- A compatibility issue in markdown Tree-sitter injections query (`set-lang-from-info-string!`) from `nvim-treesitter` on this setup
+## Local AI models
 
-Fix (applied in this config):
-- Add an override query file at `~/.config/nvim/queries/markdown/injections.scm`
-- Use the runtime-safe query style (`@injection.language`) instead of `#set-lang-from-info-string!`
+CodeCompanion uses `qwen3:8b` for chat and `qwen2.5-coder:7b` for inline edits
+and agents through the local Ollama service. Change the model names in
+`lua/plugins/codecompanion.lua` if the local model set changes.
 
-If this appears again after plugin updates:
-1. Confirm override is active with `:echo nvim_get_runtime_file('queries/markdown/injections.scm', v:true)`
-2. Ensure `~/.config/nvim/queries/markdown/injections.scm` appears first
+## Checks
+
+Useful Neovim checks include:
+
+```vim
+:checkhealth
+:Lazy
+:Mason
+:WhichKey
+```
+
+The custom mappings all have descriptions, so WhichKey can display their
+available key combinations.
