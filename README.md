@@ -1,8 +1,8 @@
 # Neovim configuration
 
 This branch is the Omarchy variant of the configuration. It is based on the
-LazyVim configuration shipped by Omarchy and adds focused Rune, Rust, Lua, and
-Bash development support.
+LazyVim configuration shipped by Omarchy and adds focused Rune, Rust, C/C++,
+Lua, and Bash development support.
 
 ## Ownership
 
@@ -18,6 +18,8 @@ files and may be replaced by Omarchy updates.
 
 - Rust LSP through rustaceanvim, rustfmt, crates.nvim, and codelldb
 - Rust tests through neotest-rust
+- C and C++ through clangd, clang-format, clang-tidy, and codelldb
+- CMake language support, Treesitter parsing, and CMake Tools build/test commands
 - Rune `.rn` filetype support with Rust-based syntax highlighting and the Rune LSP
 - Lua and Bash language servers
 - Lua formatting and linting
@@ -27,10 +29,9 @@ files and may be replaced by Omarchy updates.
 - Neo-tree custom visibility and preview behavior
 - Trouble diagnostics and TODO views
 - tmux pane navigation when running inside tmux
-- CodeCompanion using local Ollama models
+- CodeCompanion using ChatGPT authentication through Codex
 
-GitHub Copilot, C/C++, CMake, and generic C/C++ debugging are intentionally
-not included.
+GitHub Copilot is intentionally not included.
 
 ## Rune setup
 
@@ -44,11 +45,11 @@ cargo install rune-languageserver
 The server command is `rune-languageserver`, and Rune source files use the
 `.rn` extension. Rune projects are detected through `Rune.toml`.
 
-## Local AI models
+## ChatGPT setup
 
-CodeCompanion uses `qwen3:8b` for chat and `qwen2.5-coder:7b` for inline edits
-and agents through the local Ollama service. Change the model names in
-`lua/plugins/codecompanion.lua` if the local model set changes.
+CodeCompanion uses the `gpt-6.1-sol` model for chat, inline edits, and commands
+through Codex ACP's ChatGPT authentication. Install `codex-acp`, then authenticate
+with ChatGPT when prompted by Codex.
 
 ## Checks
 

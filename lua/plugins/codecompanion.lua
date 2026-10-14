@@ -7,23 +7,23 @@ return {
   },
   opts = {
     adapters = {
-      http = {
-        ollama_chat = function()
-          return require("codecompanion.adapters").extend("ollama", {
-            schema = { model = { default = "qwen3:8b" } },
-          })
-        end,
-        ollama_code = function()
-          return require("codecompanion.adapters").extend("ollama", {
-            schema = { model = { default = "qwen2.5-coder:7b" } },
+      acp = {
+        codex = function()
+          return require("codecompanion.adapters").extend("codex", {
+            defaults = {
+              auth_method = "chat-gpt",
+              session_config_options = {
+                model = "gpt-6.1-sol",
+              },
+            },
           })
         end,
       },
     },
     interactions = {
-      chat = { adapter = "ollama_chat" },
-      inline = { adapter = "ollama_code" },
-      cmd = { adapter = "ollama_chat" },
+      chat = { adapter = "codex" },
+      inline = { adapter = "codex" },
+      cmd = { adapter = "codex" },
     },
     opts = { log_level = "INFO" },
   },

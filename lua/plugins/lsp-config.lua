@@ -18,6 +18,27 @@ return {
 
       opts.servers = vim.tbl_deep_extend("force", opts.servers or {}, {
         bashls = {},
+        clangd = {
+          cmd = {
+            "clangd",
+            "--background-index",
+            "--clang-tidy",
+            "--completion-style=detailed",
+            "--header-insertion=iwyu",
+          },
+          filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+          root_dir = lspconfig.util.root_pattern(
+            "compile_commands.json",
+            "compile_flags.txt",
+            "CMakeLists.txt",
+            ".git"
+          ),
+        },
+        cmake = {
+          cmd = { "cmake-language-server" },
+          filetypes = { "cmake" },
+          root_dir = lspconfig.util.root_pattern("CMakeLists.txt", ".git"),
+        },
         lua_ls = {},
         rune_ls = {},
       })
